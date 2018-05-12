@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1037614268222",
+    "firebase_url": "https://vstu-cluster-monitor.firebaseio.com",
+    "project_id": "vstu-cluster-monitor",
+    "storage_bucket": "vstu-cluster-monitor.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1037614268222:android:97ad4d0aeb8dd73f",
+        "android_client_info": {
+          "package_name": "ru.vstu.clustermonitor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1037614268222-j04qg10i0vja9t415h1ncgmhvb7h6b2h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCtQmT_LULzp4CtLFNESmqKsG28A8-_FKk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
