@@ -21,9 +21,10 @@ class MessagingService : FirebaseMessagingService()
     /**
      * @brief Called if message is received
      *
-     *                    Foreground          Background
-     * Notification msg   called              -
-     * Data msg           called              called
+     *                     Foreground          Background
+     * Notification msg     called              -
+     * Data msg             called              called
+     * Data + Notification  called              -
      */
     public override fun onMessageReceived(message: RemoteMessage?) {
 
