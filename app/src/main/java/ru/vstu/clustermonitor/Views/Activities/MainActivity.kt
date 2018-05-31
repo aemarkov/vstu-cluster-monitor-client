@@ -13,6 +13,9 @@ import ru.vstu.clustermonitor.MonitorApplication
 import ru.vstu.clustermonitor.NavigationTargets
 import ru.vstu.clustermonitor.Navigator
 import ru.vstu.clustermonitor.R
+import android.databinding.DataBindingUtil
+import ru.vstu.clustermonitor.databinding.ActivityMainBinding
+
 
 class MainActivity : AppCompatActivity() {
 
