@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/queueFragment">
+
+    <fragment
+        android:id="@+id/sensorsFragment"
+        android:name="ru.vstu.clustermonitor.Views.Fragments.SensorsFragment"
+        android:label="fragment_sensors"
+        tools:layout="@layout/fragment_sensors" />
+    <fragment
+        android:id="@+id/resourcesFragment"
+        android:name="ru.vstu.clustermonitor.Views.Fragments.ResourcesFragment"
+        android:label="fragment_resources"
+        tools:layout="@layout/fragment_resources" />
+    <fragment
+        android:id="@+id/cameraFragment"
+        android:name="ru.vstu.clustermonitor.Views.Fragments.CameraFragment"
+        android:label="fragment_camera"
+        tools:layout="@layout/fragment_camera" />
+    <fragment
+        android:id="@+id/queueFragment"
+        android:name="ru.vstu.clustermonitor.Views.Fragments.QueueFragment"
+        android:label="fragment_queue"
+        tools:layout="@layout/fragment_queue" ></fragment>
+</navigation>

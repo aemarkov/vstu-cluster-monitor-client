@@ -7,4 +7,7 @@
     <string name="topic_fuckups">cluster_fuckups</string>
     <string name="topic_move_sensor">cluster_move_sensor</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>

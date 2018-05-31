@@ -9,9 +9,8 @@ import android.support.v4.app.NotificationCompat
 import android.util.Log
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
-import ru.vstu.clustermonitor.MainActivity
+import ru.vstu.clustermonitor.Views.Activities.MainActivity
 import ru.vstu.clustermonitor.R
-import kotlin.jvm.javaClass
 
 class MessagingService : FirebaseMessagingService()
 {
