@@ -44,13 +44,13 @@ dependencies {
     implementation 'com.android.support:recyclerview-v7:27.1.1'                 // RecycleView
     implementation 'com.android.support:cardview-v7:27.1.1'                     // CardView
 
-    implementation 'com.google.firebase:firebase-core:15.0.2'                   // Firebase for push notifications
-    implementation 'com.google.firebase:firebase-messaging:15.0.2'
+    implementation 'com.google.firebase:firebase-core:11.4.2'                   // Firebase for push notifications
+    implementation 'com.google.firebase:firebase-messaging:11.4.2'
     implementation 'com.firebase:firebase-jobdispatcher:0.8.5'
     implementation 'android.arch.navigation:navigation-fragment:1.0.0-alpha01'  // Navigation Architecture Components (remove)
     implementation 'ru.terrakok.cicerone:cicerone:3.0.0'                        // Navigation library
 
-    kapt "com.android.databinding:compiler:$gradle_version"
+    //kapt "com.android.databinding:compiler:3.1.2"
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'

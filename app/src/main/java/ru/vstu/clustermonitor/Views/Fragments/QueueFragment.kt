@@ -5,12 +5,15 @@ import android.databinding.DataBindingUtil
 import android.databinding.ObservableInt
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import kotlinx.android.synthetic.main.fragment_queue.*
 import ru.vstu.clustermonitor.Models.QueueTask
 import ru.vstu.clustermonitor.R
+import ru.vstu.clustermonitor.Views.Adapters.QueueTasksAdapter
 import ru.vstu.clustermonitor.databinding.FragmentQueueBinding
 
 /**
@@ -26,17 +29,30 @@ class QueueFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
-        val binding:  FragmentQueueBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_queue, container, false)
-        binding.count = counter
-        return binding.root
+        //val binding:  FragmentQueueBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_queue, container, false)
+        //binding.count = counter
+        //return binding.root
 
-        // Inflate the layout for this fragment
-        //return inflater.inflate(R.layout.fragment_queue, container, false)
+        return inflater.inflate(R.layout.fragment_queue, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        btnInc.setOnClickListener { view -> counter.set(counter.get() + 1) }
+        val items = listOf(
+                QueueTask("Name 1"),
+                QueueTask("Name 2"),
+                QueueTask("Name 3"),
+                QueueTask("Name 4"),
+                QueueTask("Name 5"),
+                QueueTask("Name 5"),
+                QueueTask("Name 6"),
+                QueueTask("Name 7"),
+                QueueTask("Name 8"),
+                QueueTask("Name 9")
+        )
+
+        queue_task_list.layoutManager = LinearLayoutManager(activity)
+        queue_task_list.adapter = QueueTasksAdapter(items)
     }
 }

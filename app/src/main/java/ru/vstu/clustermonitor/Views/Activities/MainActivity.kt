@@ -19,7 +19,7 @@ import ru.vstu.clustermonitor.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-    val navigator : Navigator  = Navigator(supportFragmentManager, R.id.container)
+    val navigator : Navigator  = Navigator(supportFragmentManager, R.id.fragment_container)
 
     override fun onResume() {
         super.onResume()

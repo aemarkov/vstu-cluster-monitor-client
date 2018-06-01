@@ -11,4 +11,8 @@ class QueueTask {
     public var TimeLeft: Int? = null
     public var User: String? = null
     public var Nodes: List<String>? = null
+
+    public constructor(name: String) {
+        Name = name
+    }
 }
