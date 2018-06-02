@@ -1,4 +1,4 @@
-package ru.vstu.clustermonitor.Models
+package ru.vstu.clustermonitor.models
 
 /**
  * Represents task in queue

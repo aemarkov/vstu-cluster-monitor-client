@@ -1,4 +1,4 @@
-package ru.vstu.clustermonitor.Views.Fragments
+package ru.vstu.clustermonitor.views.resources
 
 
 import android.os.Bundle

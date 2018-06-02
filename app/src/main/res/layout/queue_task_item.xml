@@ -7,7 +7,7 @@
     <data>
         <variable
             name="task"
-            type="ru.vstu.clustermonitor.Models.QueueTask" />
+            type="ru.vstu.clustermonitor.models.QueueTask" />
     </data>
 
     <android.support.v7.widget.CardView

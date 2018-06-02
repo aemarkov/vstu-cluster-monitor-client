@@ -5,10 +5,10 @@ import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentTransaction
 import ru.terrakok.cicerone.android.SupportFragmentNavigator
 import ru.terrakok.cicerone.commands.Command
-import ru.vstu.clustermonitor.Views.Fragments.CameraFragment
-import ru.vstu.clustermonitor.Views.Fragments.QueueFragment
-import ru.vstu.clustermonitor.Views.Fragments.ResourcesFragment
-import ru.vstu.clustermonitor.Views.Fragments.SensorsFragment
+import ru.vstu.clustermonitor.views.camera.CameraFragment
+import ru.vstu.clustermonitor.views.queue.QueueFragment
+import ru.vstu.clustermonitor.views.resources.ResourcesFragment
+import ru.vstu.clustermonitor.views.sensors.SensorsFragment
 
 public class Navigator(fragmentManager: FragmentManager?, containerId: Int) : SupportFragmentNavigator(fragmentManager, containerId) {
 

@@ -4,25 +4,30 @@ import android.app.Application
 import ru.terrakok.cicerone.Router
 import ru.terrakok.cicerone.Cicerone
 import ru.terrakok.cicerone.NavigatorHolder
+import ru.vstu.clustermonitor.data.fake.FakeMonitorRepository
+import ru.vstu.clustermonitor.data.interfaces.IMonitorRepository
 
-public class MonitorApplication : Application()
+class MonitorApplication : Application()
 {
     companion object{
-        public lateinit var Instance : MonitorApplication
+        lateinit var Instance : MonitorApplication
     }
 
     private var cicerone: Cicerone<Router> =  Cicerone.create()
 
-    public override fun onCreate()
+    val router : Router
+        get() = cicerone.router
+
+    val navigatorHolder : NavigatorHolder
+        get() = cicerone.navigatorHolder
+
+    lateinit var monitorRepository: IMonitorRepository
+        private set
+
+    override fun onCreate()
     {
         super.onCreate()
         Instance = this
-        super.onCreate()
+        monitorRepository = FakeMonitorRepository()
     }
-
-    public val router : Router
-        get() = cicerone.router
-
-    public  val navigatorHolder : NavigatorHolder
-        get() = cicerone.navigatorHolder
 }

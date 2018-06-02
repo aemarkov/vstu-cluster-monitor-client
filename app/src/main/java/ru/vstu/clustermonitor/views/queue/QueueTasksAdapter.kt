@@ -1,19 +1,13 @@
-package ru.vstu.clustermonitor.Views.Adapters
+package ru.vstu.clustermonitor.views.queue
 
 import android.databinding.DataBindingUtil
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import ru.vstu.clustermonitor.Models.QueueTask
+import ru.vstu.clustermonitor.models.QueueTask
 import ru.vstu.clustermonitor.R
 import ru.vstu.clustermonitor.databinding.QueueTaskItemBinding
 
-class QueueTaskViewHolder(val binding: QueueTaskItemBinding) : RecyclerView.ViewHolder(binding.root) {
-    fun bind(task: QueueTask){
-        binding.task = task
-        binding.executePendingBindings()
-    }
-}
 
 class QueueTasksAdapter(val data: List<QueueTask>) : RecyclerView.Adapter<QueueTaskViewHolder>() {
 
@@ -29,4 +23,11 @@ class QueueTasksAdapter(val data: List<QueueTask>) : RecyclerView.Adapter<QueueT
         holder.bind(data[position])
     }
 
+}
+
+class QueueTaskViewHolder(val binding: QueueTaskItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    fun bind(task: QueueTask){
+        binding.task = task
+        binding.executePendingBindings()
+    }
 }

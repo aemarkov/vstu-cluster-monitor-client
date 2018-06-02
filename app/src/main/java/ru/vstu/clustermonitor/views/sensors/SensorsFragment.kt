@@ -1,4 +1,4 @@
-package ru.vstu.clustermonitor.Views.Fragments
+package ru.vstu.clustermonitor.views.sensors
 
 
 import android.os.Bundle
@@ -9,17 +9,20 @@ import android.view.ViewGroup
 
 import ru.vstu.clustermonitor.R
 
-
 /**
- * This fragment displays realtime video from camera in
- * cluster room
+ * This fragment displays data from sensors in cluster room
+ *
+ * Отображаемые данные:
+ *  - Current temperature and humidity
+ *  - Smoke and movement sensors
+ *  - UPS voltage and operation time
  */
-class CameraFragment : Fragment() {
+class SensorsFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_camera, container, false)
+        return inflater.inflate(R.layout.fragment_sensors, container, false)
     }
 
 

@@ -1,20 +1,14 @@
-package ru.vstu.clustermonitor.Views.Activities
+package ru.vstu.clustermonitor.views
 
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
-import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
-import androidx.navigation.NavController
-import androidx.navigation.Navigation
 import com.google.firebase.messaging.FirebaseMessaging
 import kotlinx.android.synthetic.main.activity_main.*
-import ru.terrakok.cicerone.android.SupportFragmentNavigator
 import ru.vstu.clustermonitor.MonitorApplication
 import ru.vstu.clustermonitor.NavigationTargets
 import ru.vstu.clustermonitor.Navigator
 import ru.vstu.clustermonitor.R
-import android.databinding.DataBindingUtil
-import ru.vstu.clustermonitor.databinding.ActivityMainBinding
 
 
 class MainActivity : AppCompatActivity() {
