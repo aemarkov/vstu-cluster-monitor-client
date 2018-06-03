@@ -13,5 +13,5 @@ interface IMonitorRepository {
     /**
      * Fetch list of current tasks
      */
-    fun GetQueueTasks():  LiveData<FailableModel<List<QueueTask>>>
+    fun getQueueTasks():  FailableModel<List<QueueTask>>
 }

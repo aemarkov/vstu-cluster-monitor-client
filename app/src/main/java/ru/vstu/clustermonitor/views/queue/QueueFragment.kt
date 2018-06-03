@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -39,18 +40,16 @@ class QueueFragment : Fragment() {
         viewModel = ViewModelProviders.of(this)[QueueViewModel::class.java]
         queue_task_list.layoutManager = LinearLayoutManager(activity)
 
-        // Begin loading animation
-        queue_task_refresh.isRefreshing = true
+        viewModel.tasks.observe(this, Observer {
+            queue_task_list.adapter = QueueTasksAdapter(it!!)
+        })
 
-        // Display tasks when they will be ready
-        viewModel.queueTasks.observe(this, Observer {
-            // Stop loading animation
-            queue_task_refresh.isRefreshing = false
+        viewModel.error.observe(this, Observer {
+            Snackbar.make(view, it!!, Snackbar.LENGTH_SHORT).show()
+        })
 
-            if(it == null || !it.isOk)
-                Snackbar.make(view, "Не удалось загрузить задачи: ${it?.error ?: "Неизвестная ошибка"}", Snackbar.LENGTH_SHORT).show()
-            else
-                queue_task_list.adapter = QueueTasksAdapter(it.data!!) // data couldn't be null, because it.isOk == true
+        viewModel.isLoading.observe(this, Observer {
+            queue_task_refresh.isRefreshing = it!!
         })
 
         // Refresh event
