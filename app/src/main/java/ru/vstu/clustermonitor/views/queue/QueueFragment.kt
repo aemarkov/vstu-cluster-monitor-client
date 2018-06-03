@@ -27,17 +27,20 @@ class QueueFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
-        //val binding  = DataBindingUtil.inflate<FragmentQueueBinding>(inflater, R.layout.fragment_queue, container, false)
-        //binding.viewModel  = viewModel
-        //return binding.root
-
         return inflater.inflate(R.layout.fragment_queue, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProviders.of(this)[QueueViewModel::class.java]
+        val _activity = activity
+        if(_activity==null)
+        {
+            Log.e("QueueFragment", "Activity is null. Да как так-то?!")
+            return
+        }
+
+        viewModel = ViewModelProviders.of(_activity)[QueueViewModel::class.java]
         queue_task_list.layoutManager = LinearLayoutManager(activity)
 
         viewModel.tasks.observe(this, Observer {

@@ -1,54 +1,37 @@
 package ru.vstu.clustermonitor.views
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
+import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import com.google.firebase.messaging.FirebaseMessaging
 import kotlinx.android.synthetic.main.activity_main.*
 import ru.vstu.clustermonitor.MonitorApplication
 import ru.vstu.clustermonitor.NavigationTargets
-import ru.vstu.clustermonitor.Navigator
 import ru.vstu.clustermonitor.R
+import ru.vstu.clustermonitor.views.camera.CameraFragment
+import ru.vstu.clustermonitor.views.login.LoginActivity
+import ru.vstu.clustermonitor.views.queue.QueueFragment
+import ru.vstu.clustermonitor.views.resources.ResourcesFragment
+import ru.vstu.clustermonitor.views.sensors.SensorsFragment
 
 
 class MainActivity : AppCompatActivity() {
 
-    val navigator : Navigator  = Navigator(supportFragmentManager, R.id.fragment_container)
+    val TAG = "MainActivity"
 
-    override fun onResume() {
-        super.onResume()
-        MonitorApplication.Instance.navigatorHolder.setNavigator(navigator)
-    }
-
-    override fun onPause() {
-        super.onPause()
-        MonitorApplication.Instance.navigatorHolder.removeNavigator()
-    }
+    val tabs = hashMapOf(
+            R.id.navigation_queue to QueueFragment(),
+            R.id.navigation_resources to ResourcesFragment(),
+            R.id.navigation_sensors to SensorsFragment(),
+            R.id.navigation_camera to CameraFragment()
+    )
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
-        when (item.itemId) {
-            R.id.navigation_queue -> {
-                //navController.navigate(R.id.queueFragment)
-                MonitorApplication.Instance.router.newRootScreen(NavigationTargets.QUEUE)
-                return@OnNavigationItemSelectedListener true
-            }
-            R.id.navigation_resources -> {
-                //navController.navigate(R.id.resourcesFragment)
-                MonitorApplication.Instance.router.newRootScreen(NavigationTargets.RESOURCES)
-                return@OnNavigationItemSelectedListener true
-            }
-            R.id.navigation_sensors -> {
-                //navController.navigate(R.id.sensorsFragment)
-                MonitorApplication.Instance.router.newRootScreen(NavigationTargets.SENSORS)
-                return@OnNavigationItemSelectedListener true
-            }
-            R.id.navigation_camera -> {
-                //navController.navigate(R.id.cameraFragment)
-                MonitorApplication.Instance.router.newRootScreen(NavigationTargets.CAMERA)
-                return@OnNavigationItemSelectedListener true
-            }
-        }
-        false
+        navigateToTab(item.itemId)
+        true //???
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,12 +39,31 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
 
-        //navController = Navigation.findNavController(this, R.id.nav_host_fragment)
-
         // TODO: Is it correct?
         FirebaseMessaging.getInstance().subscribeToTopic(getString(R.string.topic_fuckups))
         FirebaseMessaging.getInstance().subscribeToTopic(getString(R.string.topic_move_sensor))
 
-        MonitorApplication.Instance.router.newRootScreen(NavigationTargets.QUEUE)
+        // Check login status
+        if(!MonitorApplication.Instance.monitorRepository.isLoggedIn())
+        {
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+            return
+        }
+
+        navigateToTab(R.id.navigation_queue)
+    }
+
+    private fun navigateToTab(id: Int) {
+        val transation = supportFragmentManager.beginTransaction()
+
+        val fragment : Fragment? = tabs[id]
+        if(fragment == null) {
+            Log.e(TAG, "Invalid ta id")
+            return
+        }
+
+        transation.replace(R.id.fragment_container, fragment)
+        transation.commit()
     }
 }

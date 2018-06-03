@@ -37,10 +37,8 @@ class RetrofitMonitorRepository : IMonitorRepository
         val client = OkHttpClient.Builder()
         client.addInterceptor {chain ->
             val original = chain.request()
-            val token = getToken()
             val builder = original.newBuilder()
-                    .header("Authorization", getToken())
-
+                .header("Authorization", getToken())
             chain.proceed(builder.build())
         }
 
@@ -54,7 +52,7 @@ class RetrofitMonitorRepository : IMonitorRepository
         _api =  retrofit.create(IMonitorApi::class.java)
     }
 
-     override fun isLoggedIn():Boolean = _token != null
+     override fun isLoggedIn():Boolean = _token != ""
 
     override fun auth(login: String, password: String) : Boolean  {
         val response = _api.auth(AuthRequest(login, password)).execute()

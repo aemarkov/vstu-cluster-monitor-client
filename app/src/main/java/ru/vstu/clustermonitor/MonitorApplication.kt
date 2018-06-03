@@ -14,13 +14,6 @@ class MonitorApplication : Application()
         lateinit var Instance : MonitorApplication
     }
 
-    private var cicerone: Cicerone<Router> =  Cicerone.create()
-
-    val router : Router
-        get() = cicerone.router
-
-    val navigatorHolder : NavigatorHolder
-        get() = cicerone.navigatorHolder
 
     lateinit var monitorRepository: IMonitorRepository
         private set
