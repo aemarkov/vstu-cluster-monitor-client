@@ -6,6 +6,9 @@
 
     <string name="topic_fuckups">cluster_fuckups</string>
     <string name="topic_move_sensor">cluster_move_sensor</string>
+    <string name="api_url">http://79.170.167.30:60090/</string>
+    <string name="pref_file">app_prefs</string>
+    <string name="token_pref_name">auth_token</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

@@ -42,6 +42,7 @@ class QueueViewModel : ViewModel {
         async {
 
             _isLoading.postValue(true)
+            await { _repository.auth("test", "test") }
             val data = await { _repository.getQueueTasks() }
             _isLoading.postValue(false)
 

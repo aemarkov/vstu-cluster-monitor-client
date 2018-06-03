@@ -1,11 +1,12 @@
 package ru.vstu.clustermonitor
 
 import android.app.Application
+import android.content.Context
 import ru.terrakok.cicerone.Router
 import ru.terrakok.cicerone.Cicerone
 import ru.terrakok.cicerone.NavigatorHolder
-import ru.vstu.clustermonitor.data.fake.FakeMonitorRepository
 import ru.vstu.clustermonitor.data.interfaces.IMonitorRepository
+import ru.vstu.clustermonitor.data.retrofit.RetrofitMonitorRepository
 
 class MonitorApplication : Application()
 {
@@ -28,6 +29,6 @@ class MonitorApplication : Application()
     {
         super.onCreate()
         Instance = this
-        monitorRepository = FakeMonitorRepository()
+        monitorRepository = RetrofitMonitorRepository()
     }
 }
