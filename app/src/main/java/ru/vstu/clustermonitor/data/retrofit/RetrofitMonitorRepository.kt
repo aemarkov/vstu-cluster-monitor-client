@@ -21,10 +21,13 @@ import ru.vstu.clustermonitor.models.Sensor
  */
 class RetrofitMonitorRepository : IMonitorRepository
 {
+
     private val _api: IMonitorApi
     private var _token: String
     private val _prefFileName: String = MonitorApplication.Instance.getString(R.string.pref_file)
     private val _prefName: String = MonitorApplication.Instance.getString(R.string.token_pref_name)
+
+    private var _tasks: List<QueueTask>? = null
 
     private val TAG = "Repository"
 
@@ -73,12 +76,29 @@ class RetrofitMonitorRepository : IMonitorRepository
         val response = _api.queue().execute()
         if (response.isSuccessful && response.body() != null) {
             Log.d(TAG, "Queue tasks loaded")
+            _tasks = response.body()
             return FailableModel(response.body()!!)
         }
         else {
             Log.w(TAG, "Failed to load queue tasks: ${response.code()}")
             return FailableModel("Произошла ошибка: ${response.code()}")
         }
+    }
+
+    override fun getQueueTask(id: Int): FailableModel<QueueTask> {
+        if(_tasks == null)
+        {
+            // Task wasn't loaded yet. Load tasks
+            val result = getQueueTasks()
+            if(!result.isOk)
+                return FailableModel(result.error!!)
+        }
+
+        val task = _tasks?.firstOrNull { it.job_it == id }
+        if(task == null)
+            return FailableModel("Не удалось найти задачу")
+
+        return FailableModel(task)
     }
 
     override fun getSensors(): FailableModel<List<Sensor>> {

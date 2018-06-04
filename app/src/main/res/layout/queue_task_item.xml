@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <import type="ru.vstu.clustermonitor.utils.BindingConversions"/>
         <variable
             name="task"
             type="ru.vstu.clustermonitor.models.QueueTask" />
@@ -64,7 +65,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
-                android:text="Осталось 30 минут"
+                android:text='@{"Осталось " + BindingConversions.convertSecondsToTime(task.time_left)}'
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/imageView"

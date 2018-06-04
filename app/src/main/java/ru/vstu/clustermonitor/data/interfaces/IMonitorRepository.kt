@@ -27,6 +27,11 @@ interface IMonitorRepository {
     fun getQueueTasks():  FailableModel<List<QueueTask>>
 
     /**
+     * Get task with given Id
+     */
+    fun getQueueTask(id: Int): FailableModel<QueueTask>
+
+    /**
      * Fetch list of sensors
      */
     fun getSensors(): FailableModel<List<Sensor>>

@@ -2,6 +2,7 @@ package ru.vstu.clustermonitor.views.queue
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
@@ -36,16 +37,30 @@ class QueueFragment : Fragment() {
         viewModel = ViewModelProviders.of(activity!!)[QueueViewModel::class.java]
         queue_task_list.layoutManager = LinearLayoutManager(activity)
 
+        // List of tasks updates
         viewModel.tasks.observe(this, Observer {
-            queue_task_list.adapter = QueueTasksAdapter(it!!)
+            queue_task_list.adapter = QueueTasksAdapter(it!!, {viewModel.taskSelected(it)})
         })
 
+        // Error notification
         viewModel.error.observe(this, Observer {
             Snackbar.make(view, it!!, Snackbar.LENGTH_SHORT).show()
         })
 
+        // Set loading indicator
         viewModel.isLoading.observe(this, Observer {
             queue_task_refresh.isRefreshing = it == true
+        })
+
+        viewModel.openTask.observe(this, Observer {
+            if(it!=null)
+            {
+                val intent = Intent(activity, TaskDetailsActivity::class.java)
+                val b = Bundle()
+                b.putInt("job_id", it)
+                intent.putExtras(b)
+                startActivity(intent)
+            }
         })
 
         // Refresh event

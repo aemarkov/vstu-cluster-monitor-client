@@ -9,7 +9,8 @@ import ru.vstu.clustermonitor.R
 import ru.vstu.clustermonitor.databinding.QueueTaskItemBinding
 
 
-class QueueTasksAdapter(val data: List<QueueTask>) : RecyclerView.Adapter<QueueTaskViewHolder>() {
+class QueueTasksAdapter(val data: List<QueueTask>, val itemClick: (QueueTask)->Unit) : RecyclerView.Adapter<QueueTaskViewHolder>() {
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): QueueTaskViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -20,14 +21,16 @@ class QueueTasksAdapter(val data: List<QueueTask>) : RecyclerView.Adapter<QueueT
     override fun getItemCount(): Int  = data.size
 
     override fun onBindViewHolder(holder: QueueTaskViewHolder, position: Int) {
-        holder.bind(data[position])
+        holder.bind(data[position], itemClick)
     }
 
 }
 
 class QueueTaskViewHolder(val binding: QueueTaskItemBinding) : RecyclerView.ViewHolder(binding.root) {
-    fun bind(task: QueueTask){
+    fun bind(task: QueueTask, itemClick: (QueueTask) -> Unit){
         binding.task = task
         binding.executePendingBindings()
+
+        itemView.setOnClickListener{itemClick(task)}
     }
 }
