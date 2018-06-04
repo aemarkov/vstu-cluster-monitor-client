@@ -33,14 +33,7 @@ class QueueFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val _activity = activity
-        if(_activity==null)
-        {
-            Log.e("QueueFragment", "Activity is null. Да как так-то?!")
-            return
-        }
-
-        viewModel = ViewModelProviders.of(_activity)[QueueViewModel::class.java]
+        viewModel = ViewModelProviders.of(activity!!)[QueueViewModel::class.java]
         queue_task_list.layoutManager = LinearLayoutManager(activity)
 
         viewModel.tasks.observe(this, Observer {
@@ -52,7 +45,7 @@ class QueueFragment : Fragment() {
         })
 
         viewModel.isLoading.observe(this, Observer {
-            queue_task_refresh.isRefreshing = it!!
+            queue_task_refresh.isRefreshing = it == true
         })
 
         // Refresh event
