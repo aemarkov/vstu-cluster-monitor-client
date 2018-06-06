@@ -22,11 +22,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".views.queue.TaskDetailsActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="ru.vstu.clustermonitor.views.MainActivity" />
-        </activity>
+        <activity android:name=".views.queue.TaskDetailsActivity"/>
+        <activity android:name=".views.login.LoginActivity" />
 
         <service android:name=".firebase.MessagingService">
             <intent-filter>
@@ -38,8 +35,6 @@
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
-
-        <activity android:name=".views.login.LoginActivity" />
     </application>
 
 </manifest>

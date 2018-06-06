@@ -7,13 +7,15 @@ import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_queue.*
 import ru.vstu.clustermonitor.R
-import ru.vstu.clustermonitor.models.FailableModel
+import ru.vstu.clustermonitor.databinding.NodeItemBinding
+import ru.vstu.clustermonitor.databinding.QueueTaskItemBinding
+import ru.vstu.clustermonitor.models.QueueTask
+import ru.vstu.clustermonitor.utils.BindingAdapter
 
 /**
  * This fragment displays current queue system status
@@ -31,15 +33,23 @@ class QueueFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_queue, container, false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?)
+    {
         super.onViewCreated(view, savedInstanceState)
-
         viewModel = ViewModelProviders.of(activity!!)[QueueViewModel::class.java]
-        queue_task_list.layoutManager = LinearLayoutManager(activity)
 
         // List of tasks updates
-        viewModel.tasks.observe(this, Observer {
-            queue_task_list.adapter = QueueTasksAdapter(it!!, {viewModel.taskSelected(it)})
+        viewModel.tasks.observe(this, Observer
+        {
+            queue_task_list.layoutManager = LinearLayoutManager(activity)
+            queue_task_list.adapter = object: BindingAdapter<QueueTask, QueueTaskItemBinding>(
+                    it!!,
+                    R.layout.queue_task_item,
+                    {viewModel.taskSelected(it)})
+            {
+                override fun setBinding(binding: QueueTaskItemBinding, item: QueueTask) { binding.task = item }
+            }
+
         })
 
         // Error notification

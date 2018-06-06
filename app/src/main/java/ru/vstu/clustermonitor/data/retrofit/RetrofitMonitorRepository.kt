@@ -1,11 +1,8 @@
 package ru.vstu.clustermonitor.data.retrofit
 
-import android.app.Application
 import android.content.Context
 import android.util.Log
-import co.metalab.asyncawait.async
 import okhttp3.OkHttpClient
-import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import ru.vstu.clustermonitor.MonitorApplication
@@ -94,7 +91,7 @@ class RetrofitMonitorRepository : IMonitorRepository
                 return FailableModel(result.error!!)
         }
 
-        val task = _tasks?.firstOrNull { it.job_it == id }
+        val task = _tasks?.firstOrNull { it.job_id == id }
         if(task == null)
             return FailableModel("Не удалось найти задачу")
 

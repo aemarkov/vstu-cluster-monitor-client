@@ -3,7 +3,6 @@ package ru.vstu.clustermonitor.views.queue
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
-import android.util.Log
 import co.metalab.asyncawait.async
 import ru.vstu.clustermonitor.MonitorApplication
 import ru.vstu.clustermonitor.models.QueueTask
@@ -58,6 +57,6 @@ class QueueViewModel : ViewModel {
     }
 
     fun taskSelected(task: QueueTask){
-        _openTask.postValue(task.job_it)
+        _openTask.postValue(task.job_id)
     }
 }

@@ -7,6 +7,16 @@ import android.os.Bundle
 import android.support.v4.app.NavUtils
 import android.view.MenuItem
 import ru.vstu.clustermonitor.R
+import android.databinding.DataBindingUtil
+import android.support.v7.widget.LinearLayoutManager
+import kotlinx.android.synthetic.main.activity_task_details.*
+import kotlinx.android.synthetic.main.fragment_queue.*
+import ru.vstu.clustermonitor.databinding.ActivityTaskDetailsBinding
+import ru.vstu.clustermonitor.databinding.NodeItemBinding
+import ru.vstu.clustermonitor.databinding.QueueTaskItemBinding
+import ru.vstu.clustermonitor.models.QueueTask
+import ru.vstu.clustermonitor.utils.BindingAdapter
+
 
 class TaskDetailsActivity : AppCompatActivity() {
 
@@ -19,10 +29,24 @@ class TaskDetailsActivity : AppCompatActivity() {
         val jobId = bundle.getInt("job_id")
 
         val viewModel = ViewModelProviders.of(this)[TaskDetailsViewModel::class.java]
+        val binding = DataBindingUtil.setContentView<ActivityTaskDetailsBinding>(this, R.layout.activity_task_details)
+
         viewModel.task.observe(this, Observer {
             if(it?.isOk==true && it.data != null)  // fuck kotlin
             {
                 supportActionBar?.title = it.data.name
+                binding.task = it.data
+
+                nodes_list.layoutManager = LinearLayoutManager(this)
+                nodes_list.adapter = object: BindingAdapter<String, NodeItemBinding>(
+                        listOf("1", "2", "3", "4", "5", "6"),//it.data.nodes,
+                        R.layout.node_item,
+                        {})
+                {
+                    override fun setBinding(binding: NodeItemBinding, item: String) {
+                        binding.node = item
+                    }
+                }
             }
             else
             {
@@ -39,7 +63,7 @@ class TaskDetailsActivity : AppCompatActivity() {
     {
         if(item?.itemId == android.R.id.home)
         {
-            NavUtils.navigateUpFromSameTask(this)
+            onBackPressed()
             return true
         }
 

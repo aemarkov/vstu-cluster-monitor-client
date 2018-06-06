@@ -16,14 +16,14 @@ data class AuthResponse
  */
 data class QueueTask
 (
-    var job_it: Int,
-    var elapsed_time: Int,
-    var time_left: Int,
-    var partition: String,
-    var name: String,
-    var user: String,
-    var state: String,
-    var nodes: List<String>
+        var job_id: Int,
+        var elapsed_time: Int,
+        var time_left: Int,
+        var partition: String,
+        var name: String,
+        var user: String,
+        var state: String,
+        var nodes: List<String>
 )
 
 /**
