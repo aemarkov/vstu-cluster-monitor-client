@@ -3,6 +3,8 @@ package ru.vstu.clustermonitor.utils
 import android.databinding.BindingAdapter
 import android.databinding.BindingConversion
 import android.widget.TextView
+import java.text.SimpleDateFormat
+import java.util.*
 
 /**
  * Set of methods to convert data for databinding to the
@@ -10,7 +12,7 @@ import android.widget.TextView
  */
 class BindingConversions {
     companion object {
-
+        val format = SimpleDateFormat("dd.mm.yyyy HH:mm")
         /**
          * Convert time span in seconds to readable format
          */
@@ -25,5 +27,11 @@ class BindingConversions {
                 else -> "${seconds / (24*3600)} д. ${(seconds % (24 * 3600))/3600} ч."  //          D д. H ч.
             }
         }
+
+        /**
+         * Convert java.util.Date to string (dd.mm.yyyy HH:mm)
+         */
+        @JvmStatic
+        fun conertDataToString(data: Date): String  = format.format(data)
     }
 }

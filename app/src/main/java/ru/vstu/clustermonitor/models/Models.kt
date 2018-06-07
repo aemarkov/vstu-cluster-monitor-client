@@ -37,10 +37,10 @@ data class Sensor
 (
     var type: String,
     var last_update: Date,
-    var temperature: Int,
-    var humidity: Int,
-    var smoke: Boolean,
-    var move: Boolean,
-    var supply: Int,
-    var time_left: Int
+    var temperature: Int?,
+    var humidity: Int?,
+    var smoke: Boolean?,
+    var move: Boolean?,
+    var supply: Int?,
+    var time_left: Int?
 )

@@ -39,7 +39,7 @@ class TaskDetailsActivity : AppCompatActivity() {
 
                 nodes_list.layoutManager = LinearLayoutManager(this)
                 nodes_list.adapter = object: BindingAdapter<String, NodeItemBinding>(
-                        listOf("1", "2", "3", "4", "5", "6"),//it.data.nodes,
+                        it.data.nodes,
                         R.layout.node_item,
                         {})
                 {

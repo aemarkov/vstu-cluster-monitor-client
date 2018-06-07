@@ -2,6 +2,7 @@ package ru.vstu.clustermonitor.data.retrofit
 
 import android.content.Context
 import android.util.Log
+import com.google.gson.*
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -12,6 +13,9 @@ import ru.vstu.clustermonitor.models.AuthRequest
 import ru.vstu.clustermonitor.models.FailableModel
 import ru.vstu.clustermonitor.models.QueueTask
 import ru.vstu.clustermonitor.models.Sensor
+import java.lang.reflect.Type
+import java.text.DateFormat
+import java.util.*
 
 /**
  * Repository provide all access to data
@@ -42,8 +46,12 @@ class RetrofitMonitorRepository : IMonitorRepository
             chain.proceed(builder.build())
         }
 
+        val gson = GsonBuilder()
+                .registerTypeAdapter(Date::class.java, UnixTimeDateConverter())
+                .create()
+
         val retrofit = Retrofit.Builder()
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(gson))
                 .baseUrl(MonitorApplication.Instance.getString(R.string.api_url))
                 .client(client.build())
                 .build()
@@ -134,4 +142,15 @@ class RetrofitMonitorRepository : IMonitorRepository
 
         Log.d(TAG, "Token is saved to preferences")
     }
+}
+
+class UnixTimeDateConverter: JsonDeserializer<Date>{
+    override fun deserialize(json: JsonElement?, typeOfT: Type?, context: JsonDeserializationContext?): Date
+    {
+        if(json == null)
+            throw Exception("Date in json is  null")
+
+        return Date(json.asLong  * 1000)
+    }
+
 }

@@ -6,11 +6,32 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorError">#e74c3c</item>
     </style>
 
     <style name="PropertyTextView">
         <item name="android:layout_margin">8dp</item>
         <item name="android:textSize">20dp</item>
+    </style>
+
+    <style name="SensorValueGroup">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:layout_margin">4dp</item>
+    </style>
+
+    <style name="SensorValueTextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textSize">20dp</item>
+    </style>
+
+    <style name="SensorIcon">
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
     </style>
 
 </resources>
