@@ -5,12 +5,12 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'com.google.gms.google-services'
 
 android {
-    buildToolsVersion "27.0.3"
-    compileSdkVersion 27
+    buildToolsVersion "28.0.3"
+    compileSdkVersion 28
     defaultConfig {
         applicationId "ru.vstu.clustermonitor"
         minSdkVersion 15
-        targetSdkVersion 27
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
